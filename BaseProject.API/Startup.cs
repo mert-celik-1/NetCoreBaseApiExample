@@ -2,6 +2,9 @@ using BaseProject.Core;
 using BaseProject.Data;
 using BaseProject.Data.Abstract;
 using BaseProject.Data.Concrete;
+using BaseProject.Services.Abstract;
+using BaseProject.Services.AutoMapper;
+using BaseProject.Services.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +36,10 @@ namespace BaseProject.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddAutoMapper(typeof(ArticleMap));
+
+            
+            services.AddScoped<IArticleService,ArticleService>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
 
 
