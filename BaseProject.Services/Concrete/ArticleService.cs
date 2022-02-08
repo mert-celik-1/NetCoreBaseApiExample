@@ -50,7 +50,7 @@ namespace BaseProject.Services.Concrete
             {
                 article.IsActive = false;
 
-                await _unitOfWork.Articles.DeleteAsync(article);
+                await _unitOfWork.Articles.UpdateAsync(article);
 
                 await _unitOfWork.CommitAsync();
 
@@ -74,7 +74,7 @@ namespace BaseProject.Services.Concrete
 
         public async Task<Response<List<ArticleDto>>> GetAll()
         {
-            var articles = await _unitOfWork.Articles.GetAllAsync(a=>a.IsActive, a => a.User, a => a.Category);
+            var articles = await _unitOfWork.Articles.GetAllAsync(a=>a.IsActive, a => a.User, a => a.Category,a=>a.Comments);
 
             if (articles.Count>=0)
             {

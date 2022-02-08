@@ -36,11 +36,12 @@ namespace BaseProject.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddAutoMapper(typeof(ArticleMap));
+            services.AddAutoMapper(typeof(ArticleMap),typeof(CategoryMap));
 
-            
-            services.AddScoped<IArticleService,ArticleService>();
-            services.AddScoped<IUnitOfWork,UnitOfWork>();
+
+            services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
             services.AddDbContext<AppDbContext>(options =>
@@ -60,8 +61,10 @@ namespace BaseProject.API
 
 
 
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseProject.API", Version = "v1" });

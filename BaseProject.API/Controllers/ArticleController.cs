@@ -1,4 +1,5 @@
 ﻿using BaseProject.Core.Dtos;
+using BaseProject.Core.Dtos.CategoryDtos;
 using BaseProject.Services.Abstract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,15 @@ namespace BaseProject.API.Controllers
             return Ok(articles);
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> GetArticleById(ArticleGetDto articleGetDto)
+        {
+            var article=await _articleService.Get(articleGetDto.Id);
+
+            return Ok(article);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddArticle(ArticleAddDto articleAddDto)
         {
@@ -36,6 +46,31 @@ namespace BaseProject.API.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EditArticle(ArticleUpdateDto articleUpdateDto)
+        {
+            await _articleService.Update(articleUpdateDto);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteArticle(ArticleDeleteDto articleDeleteDto)
+        {
+            await _articleService.Delete(articleDeleteDto.Id);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetArticlesByCategoryId(CategoryGetDto categoryGetDto)
+        {
+            var articles=await _articleService.GetAllByCategory(categoryGetDto.Id);
+
+            return Ok(articles);
+        }
+
 
 
     }
