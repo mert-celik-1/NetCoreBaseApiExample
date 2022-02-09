@@ -60,6 +60,26 @@ namespace BaseProject.Services.Utilities
                 return $"{categoryName} adlı kategori başarıyla veritabanından silinmiştir.";
             }
         }
+
+        public static class Comment
+        {
+            public static string NotFound(bool isPlural)
+            {
+                if (isPlural) return "Hiç bir yorum bulunamadı.";
+                return "Böyle bir yorum bulunamadı.";
+            }
+
+            public static string Add(string comment)
+            {
+                return $"{comment} adlı yorum başarıyla eklenmiştir.";
+            }
+
+            public static string Delete(string comment)
+            {
+                return $"{comment} adlı yorum başarıyla silinmiştir.";
+            }
+          
+        }
         public static class GeneralErrors
         {
             public static string AddError()
