@@ -25,6 +25,13 @@ namespace BaseProject.Shared.Response
             ResultStatus = resultStatus;
             Message = message;
         }
+
+        public Response(ResultStatus resultStatus, List<string> messages)
+        {
+            ResultStatus = resultStatus;
+            Messages = messages;
+        }
+
         public Response(ResultStatus resultStatus, string message, T data, Exception exception)
         {
             ResultStatus = resultStatus;
@@ -34,6 +41,8 @@ namespace BaseProject.Shared.Response
         }
         public ResultStatus ResultStatus { get; }
         public string Message { get; }
+        public List<string> Messages { get; }
+
         public Exception Exception { get; }
         public T Data { get; }
     }

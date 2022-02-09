@@ -5,6 +5,8 @@ using BaseProject.Data.Concrete;
 using BaseProject.Services.Abstract;
 using BaseProject.Services.AutoMapper;
 using BaseProject.Services.Concrete;
+using BaseProject.Shared.Extensions;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -64,7 +66,13 @@ namespace BaseProject.API
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
+            ).AddFluentValidation(options =>
+            {
+                options.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
+
+            services.UseCustomValidationResponse();
+
 
             services.AddSwaggerGen(c =>
             {
@@ -81,6 +89,9 @@ namespace BaseProject.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BaseProject.API v1"));
             }
+
+            app.UseCustomException();
+
 
             app.UseHttpsRedirection();
 
