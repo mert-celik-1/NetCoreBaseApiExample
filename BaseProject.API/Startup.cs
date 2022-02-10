@@ -38,12 +38,13 @@ namespace BaseProject.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddAutoMapper(typeof(ArticleMap),typeof(CategoryMap),typeof(CommentMap));
+            services.AddAutoMapper(typeof(ArticleMap),typeof(CategoryMap),typeof(CommentMap),typeof(UserMap));
 
 
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
