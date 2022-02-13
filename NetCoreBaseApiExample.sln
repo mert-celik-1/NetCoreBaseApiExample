@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseProject.API", "BaseProject.API\BaseProject.API.csproj", "{270D1657-E53A-4708-85A9-13A62CF04EAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.API", "BaseProject.API\BaseProject.API.csproj", "{270D1657-E53A-4708-85A9-13A62CF04EAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseProject.Shared", "BaseProject.Shared\BaseProject.Shared.csproj", "{23D56467-6D54-4A77-8864-C69ACD4F01A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.Shared", "BaseProject.Shared\BaseProject.Shared.csproj", "{23D56467-6D54-4A77-8864-C69ACD4F01A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseProject.Data", "BaseProject.Data\BaseProject.Data.csproj", "{2869F480-2C85-4570-869C-359AAA26F9F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.Data", "BaseProject.Data\BaseProject.Data.csproj", "{2869F480-2C85-4570-869C-359AAA26F9F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseProject.Services", "BaseProject.Services\BaseProject.Services.csproj", "{8C134152-810A-4DE8-8D68-9BB0EB1E1611}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.Services", "BaseProject.Services\BaseProject.Services.csproj", "{8C134152-810A-4DE8-8D68-9BB0EB1E1611}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseProject.Core", "BaseProject.Core\BaseProject.Core.csproj", "{ADA7B5BF-2061-45DC-9D85-6393AFF65C20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.Core", "BaseProject.Core\BaseProject.Core.csproj", "{ADA7B5BF-2061-45DC-9D85-6393AFF65C20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseProject.UnitTest", "BaseProject.UnitTest\BaseProject.UnitTest.csproj", "{30332A42-7CCF-409F-B1EF-DE7C5960A151}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{ADA7B5BF-2061-45DC-9D85-6393AFF65C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADA7B5BF-2061-45DC-9D85-6393AFF65C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADA7B5BF-2061-45DC-9D85-6393AFF65C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30332A42-7CCF-409F-B1EF-DE7C5960A151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30332A42-7CCF-409F-B1EF-DE7C5960A151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30332A42-7CCF-409F-B1EF-DE7C5960A151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30332A42-7CCF-409F-B1EF-DE7C5960A151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
