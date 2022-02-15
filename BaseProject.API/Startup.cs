@@ -1,3 +1,4 @@
+using BaseProject.API.Hubs;
 using BaseProject.Core;
 using BaseProject.Data;
 using BaseProject.Data.Abstract;
@@ -72,6 +73,9 @@ namespace BaseProject.API
                 options.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
 
+            services.AddSignalR();
+
+
             services.UseCustomValidationResponse();
 
 
@@ -103,6 +107,7 @@ namespace BaseProject.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<MyHub>("/MyHub");
             });
         }
     }
