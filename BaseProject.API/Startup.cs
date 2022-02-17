@@ -1,5 +1,6 @@
 using BaseProject.API.Hubs;
 using BaseProject.Core;
+using BaseProject.Core.Repositories;
 using BaseProject.Data;
 using BaseProject.Data.Abstract;
 using BaseProject.Data.Concrete;
@@ -7,7 +8,9 @@ using BaseProject.Services.Abstract;
 using BaseProject.Services.AutoMapper;
 using BaseProject.Services.Concrete;
 using BaseProject.Shared.Extensions;
+using BaseProject.Shared.TokenOptions;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,11 +44,13 @@ namespace BaseProject.API
 
             services.AddAutoMapper(typeof(ArticleMap),typeof(CategoryMap),typeof(CommentMap),typeof(UserMap));
 
-
+            services.AddSingleton<ITokenService, TokenService>();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IUserService, UserService>();
+            //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
@@ -64,6 +69,28 @@ namespace BaseProject.API
                 options.Password.RequireDigit = true;
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
+            services.Configure<CustomTokenOptions>(Configuration.GetSection("TokenOption"));
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts =>
+            {
+                var tokenOptions = Configuration.GetSection("TokenOption").Get<CustomTokenOptions>();
+                opts.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidIssuer = tokenOptions.Issuer,
+                    ValidAudience = tokenOptions.Audience[0],
+                    IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
+
+                    ValidateIssuerSigningKey = true,
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
 
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
@@ -101,7 +128,8 @@ namespace BaseProject.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

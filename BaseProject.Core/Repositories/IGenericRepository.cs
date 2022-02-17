@@ -20,6 +20,7 @@ namespace BaseProject.Core.Repositories
         void Update(T entity);
 
         Task DeleteAsync(T entity);
+        IQueryable<T> Where(Expression<Func<T, bool>> predicate);
 
         Task<bool> AnyAsync(Expression<Func<T, bool>> predicate);
 

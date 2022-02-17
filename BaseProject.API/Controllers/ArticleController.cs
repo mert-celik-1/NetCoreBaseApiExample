@@ -1,6 +1,7 @@
 ﻿using BaseProject.Core.Dtos;
 using BaseProject.Core.Dtos.CategoryDtos;
 using BaseProject.Services.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,6 +23,7 @@ namespace BaseProject.API.Controllers
         }
 
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetArticles()
         {

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BaseProject.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220206151353_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220217160937_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,14 +57,14 @@ namespace BaseProject.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "526b9d10-01ba-4be2-89f1-a75140d386f7",
+                            Id = "609d3700-17fd-4ba0-8b4e-895349a56d89",
                             Content = "Test",
                             IsActive = true,
                             Title = "Article"
                         },
                         new
                         {
-                            Id = "628f7d1d-7b3a-4bc4-9b3a-cf85d78468d3",
+                            Id = "648ede77-921c-4f37-8c3e-4972fb876ff7",
                             Content = "Test2",
                             IsActive = true,
                             Title = "Article2"
@@ -94,7 +94,7 @@ namespace BaseProject.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "32ea58cc-d568-4501-86cf-aa72f1862322",
+                            Id = "749527e0-4603-43fa-a878-bfeeca95acfb",
                             Description = "test",
                             IsActive = true,
                             Name = "category"
@@ -126,10 +126,26 @@ namespace BaseProject.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d2f599a1-442f-4ecb-b394-12c68328b1f9",
+                            Id = "25598677-ba84-4c84-94f6-fa0fb405b64a",
                             IsActive = true,
                             Text = "text"
                         });
+                });
+
+            modelBuilder.Entity("BaseProject.Core.Entities.UserRefreshToken", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Expiration")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserRefreshTokens");
                 });
 
             modelBuilder.Entity("BaseProject.Core.User", b =>

@@ -76,6 +76,11 @@ namespace BaseProject.Core.Repositories
             return await query.SingleOrDefaultAsync();
         }
 
+        public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().Where(predicate);
+        }
+
         public void Update(T entity)
         {
             _context.Set<T>().Update(entity);

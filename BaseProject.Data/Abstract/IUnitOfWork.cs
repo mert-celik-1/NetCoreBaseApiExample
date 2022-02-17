@@ -11,6 +11,7 @@ namespace BaseProject.Data.Abstract
         IArticleRepository Articles { get; }
         ICategoryRepository Categories { get; }
         ICommentRepository Comments { get; }
+        IUserRefreshTokenRepository RefreshTokens { get; }
 
         Task CommitAsync();
 

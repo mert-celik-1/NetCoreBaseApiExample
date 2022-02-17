@@ -12,6 +12,7 @@ namespace BaseProject.Data.Concrete
         private ArticleRepository _articleRepository;
         private CategoryRepository _categoryRepository;
         private CommentRepository _commentRepository;
+        private UserRefreshTokenRepository _userRefreshTokenRepository;
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -25,6 +26,8 @@ namespace BaseProject.Data.Concrete
         public ICategoryRepository Categories => _categoryRepository ?? new CategoryRepository(_context);
 
         public ICommentRepository Comments => _commentRepository ?? new CommentRepository(_context);
+
+        public IUserRefreshTokenRepository RefreshTokens => new UserRefreshTokenRepository(_context);
 
         public void Commit()
         {

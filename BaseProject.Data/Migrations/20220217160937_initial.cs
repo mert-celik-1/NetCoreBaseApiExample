@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BaseProject.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,6 +58,19 @@ namespace BaseProject.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserRefreshTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Expiration = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRefreshTokens", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -219,19 +232,19 @@ namespace BaseProject.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "Content", "IsActive", "Title", "UserId" },
                 values: new object[,]
                 {
-                    { "526b9d10-01ba-4be2-89f1-a75140d386f7", null, "Test", true, "Article", null },
-                    { "628f7d1d-7b3a-4bc4-9b3a-cf85d78468d3", null, "Test2", true, "Article2", null }
+                    { "609d3700-17fd-4ba0-8b4e-895349a56d89", null, "Test", true, "Article", null },
+                    { "648ede77-921c-4f37-8c3e-4972fb876ff7", null, "Test2", true, "Article2", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Description", "IsActive", "Name" },
-                values: new object[] { "32ea58cc-d568-4501-86cf-aa72f1862322", "test", true, "category" });
+                values: new object[] { "749527e0-4603-43fa-a878-bfeeca95acfb", "test", true, "category" });
 
             migrationBuilder.InsertData(
                 table: "Comments",
                 columns: new[] { "Id", "ArticleId", "IsActive", "Text" },
-                values: new object[] { "d2f599a1-442f-4ecb-b394-12c68328b1f9", null, true, "text" });
+                values: new object[] { "25598677-ba84-4c84-94f6-fa0fb405b64a", null, true, "text" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Articles_CategoryId",
@@ -307,6 +320,9 @@ namespace BaseProject.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "UserRefreshTokens");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
