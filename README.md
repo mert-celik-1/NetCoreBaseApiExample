@@ -5,6 +5,7 @@ Entities in the project are only for example.
 The same system can be used for different projects by implementing different entities.
 This project has nothing to do with the client side, only the server-side
 Service methods and API endpoints are coded with asynchronous structure.
+It will be updated as new features are added.
 
 This Project Includes :
 - SQL
