@@ -21,14 +21,12 @@ namespace BaseProject.Services.Concrete
         private readonly ITokenService _tokenService;
         private readonly UserManager<User> _userManager;
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly IGenericRepository<UserRefreshToken> _userRefreshTokenService;
 
         public AuthenticationService(ITokenService tokenService, UserManager<User> userManager, IUnitOfWork unitOfWork)
         {
             _tokenService = tokenService;
             _userManager = userManager;
             _unitOfWork = unitOfWork;
-            //_userRefreshTokenService = userRefreshTokenService;
         }
 
         public async Task<Response<TokenDto>> CreateTokenAsync(LoginDto loginDto)

@@ -10,6 +10,7 @@ using BaseProject.Services.Concrete;
 using BaseProject.Shared.Extensions;
 using BaseProject.Shared.TokenOptions;
 using FluentValidation.AspNetCore;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,7 +50,6 @@ namespace BaseProject.API
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IUserService, UserService>();
-            //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -92,6 +92,8 @@ namespace BaseProject.API
                 };
             });
 
+            services.AddHangfire(config => config.UseSqlServerStorage(Configuration.GetConnectionString("HangFireConnection")));
+            services.AddHangfireServer();
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -126,6 +128,8 @@ namespace BaseProject.API
 
 
             app.UseHttpsRedirection();
+
+            app.UseHangfireDashboard("/hangfire");
 
             app.UseRouting();
             
