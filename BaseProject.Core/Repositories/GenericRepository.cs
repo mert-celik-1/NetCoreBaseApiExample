@@ -58,6 +58,28 @@ namespace BaseProject.Core.Repositories
             return await query.ToListAsync();
         }
 
+        public async Task<IList<T>> Search(int pageIndex, int pageSize, Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            if (includeProperties.Any())
+            {
+                foreach (var includeProperty in includeProperties)
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            return await query.ToListAsync();
+        }
+
         public async Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _context.Set<T>();
@@ -92,5 +114,6 @@ namespace BaseProject.Core.Repositories
             return entity;
         }
 
+      
     }
 }

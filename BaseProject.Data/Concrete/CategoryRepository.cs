@@ -19,5 +19,10 @@ namespace BaseProject.Data.Concrete
         {
             get { return _context as AppDbContext; }
         }
+
+        //public async Task<Category> GetById(string categoryId)
+        //{
+        //    return await AppDbContext.Categories.SingleOrDefaultAsync(c => c.Id == categoryId);
+        //}
     }
 }

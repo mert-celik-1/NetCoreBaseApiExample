@@ -85,7 +85,20 @@ namespace BaseProject.Services.Concrete
             return new Response<List<ArticleDto>>(ResultStatus.Error, ResponseMessages.Article.NotFound(true));
         }
 
-    
+        public async Task<Response<List<ArticleDto>>> SearchArticles(int pageIndex, int pageSize)
+        {
+            var articles = await _unitOfWork.Articles.Search(pageIndex,pageSize,a => a.IsActive, a => a.User, a => a.Category, a => a.Comments);
+
+            if (articles.Count >= 0)
+            {
+                var articlesDto = _mapper.Map<List<Article>, List<ArticleDto>>((List<Article>)articles);
+
+                return new Response<List<ArticleDto>>(ResultStatus.Success, articlesDto);
+            }
+            return new Response<List<ArticleDto>>(ResultStatus.Error, ResponseMessages.Article.NotFound(true));
+        }
+
+
 
         public async Task<Response<List<ArticleDto>>> GetAllByCategory(string categoryId)
         {

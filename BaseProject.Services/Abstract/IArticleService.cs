@@ -11,6 +11,7 @@ namespace BaseProject.Services.Abstract
     public interface IArticleService
     {
         Task<Response<List<ArticleDto>>> GetAll();
+        Task<Response<List<ArticleDto>>> SearchArticles(int pageIndex, int pageSize);
         Task<Response<ArticleDto>> Get(string articleId);
         Task<Response<List<ArticleDto>>> GetAllByCategory(string categoryId);
         Task<NoDataResponse> Add(ArticleAddDto articleAddDto);

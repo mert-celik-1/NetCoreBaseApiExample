@@ -73,6 +73,15 @@ namespace BaseProject.API.Controllers
             return Ok(articles);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SearchArticles(int pageIndex,int pageSize)
+        {
+            var articles = await _articleService.SearchArticles(pageIndex, pageSize);
+
+            return Ok(articles);
+        }
+
+
 
 
     }
