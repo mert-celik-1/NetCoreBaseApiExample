@@ -6,7 +6,7 @@ The same system can be used for different projects by implementing different ent
 This project has nothing to do with the client side, only the server-side
 Service methods and API endpoints are coded with asynchronous structure.
 It will be updated as new features are added.(
-Logging, paging and caching will be added soon)
+Logging and caching will be added soon)
 
 This Project Includes :
 - SQL
@@ -18,3 +18,4 @@ This Project Includes :
 - EF Core
 - FluentAPI
 - Unit Tests (Xunit)
+- Pagination
