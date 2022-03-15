@@ -3,6 +3,7 @@ using BaseProject.Core;
 using BaseProject.Core.Dtos;
 using BaseProject.Data.Abstract;
 using BaseProject.Services.Abstract;
+using BaseProject.Services.Cache;
 using BaseProject.Services.Concrete;
 using BaseProject.Services.Utilities;
 using BaseProject.Shared.Response;
@@ -17,11 +18,13 @@ namespace BaseProject.UnitTest.ServiceTest
         private IArticleService _articleService;
         private Mock<IUnitOfWork> _unitOfWork;
         private Mock<IMapper> _mapper;
+        private Mock<ICacheService> _cache;
         public ArticleServiceTest()
         {
             _unitOfWork = new Mock<IUnitOfWork>();
             _mapper = new Mock<IMapper>();
-            _articleService = new ArticleService(_unitOfWork.Object, _mapper.Object);
+            _cache = new Mock<ICacheService>();
+            _articleService = new ArticleService(_unitOfWork.Object, _mapper.Object,_cache.Object);
         }
 
         [Fact]
