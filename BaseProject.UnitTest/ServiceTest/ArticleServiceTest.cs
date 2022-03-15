@@ -7,6 +7,7 @@ using BaseProject.Services.Cache;
 using BaseProject.Services.Concrete;
 using BaseProject.Services.Utilities;
 using BaseProject.Shared.Response;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System.Threading.Tasks;
 using Xunit;
@@ -19,12 +20,14 @@ namespace BaseProject.UnitTest.ServiceTest
         private Mock<IUnitOfWork> _unitOfWork;
         private Mock<IMapper> _mapper;
         private Mock<ICacheService> _cache;
+        private Mock<ILogger<ArticleService>> _logger;
         public ArticleServiceTest()
         {
             _unitOfWork = new Mock<IUnitOfWork>();
             _mapper = new Mock<IMapper>();
             _cache = new Mock<ICacheService>();
-            _articleService = new ArticleService(_unitOfWork.Object, _mapper.Object,_cache.Object);
+            _logger = new Mock<ILogger<ArticleService>>();
+            _articleService = new ArticleService(_unitOfWork.Object, _mapper.Object,_cache.Object, _logger.Object);
         }
 
         [Fact]

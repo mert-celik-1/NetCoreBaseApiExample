@@ -17,6 +17,7 @@ namespace BaseProject.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -6,6 +6,7 @@ using BaseProject.Services.Abstract;
 using BaseProject.Services.Cache;
 using BaseProject.Services.Utilities;
 using BaseProject.Shared.Response;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace BaseProject.Services.Concrete
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ICacheService _cacheService;
+        private readonly ILogger _logger;
 
-        public ArticleService(IUnitOfWork unitOfWork, IMapper mapper,ICacheService cacheService)
+        public ArticleService(IUnitOfWork unitOfWork, IMapper mapper,ICacheService cacheService,ILogger<ArticleService> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _cacheService = cacheService;
+            _logger = logger;
         }
 
         public async Task<NoDataResponse> Add(ArticleAddDto articleAddDto)

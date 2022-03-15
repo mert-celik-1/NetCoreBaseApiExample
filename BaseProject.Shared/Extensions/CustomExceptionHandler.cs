@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace BaseProject.Shared.Extensions
 {
     public static class CustomExceptionHandler
     {
+
         public static void UseCustomException(this IApplicationBuilder app)
         {
             
@@ -24,7 +26,7 @@ namespace BaseProject.Shared.Extensions
                     context.Response.ContentType = "application/json";
 
                     var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
-
+                   
                     if (errorFeature != null)
                     {
                         var ex = errorFeature.Error;
