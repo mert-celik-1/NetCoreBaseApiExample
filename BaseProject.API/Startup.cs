@@ -118,7 +118,7 @@ namespace BaseProject.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,RedisSettings redisSettings)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,RedisSettings redisSettings,ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -127,7 +127,7 @@ namespace BaseProject.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BaseProject.API v1"));
             }
 
-            app.UseCustomException();
+            app.UseCustomException(logger);
 
 
             app.UseHttpsRedirection();

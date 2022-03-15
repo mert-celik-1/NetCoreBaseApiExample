@@ -15,7 +15,7 @@ namespace BaseProject.Shared.Extensions
     public static class CustomExceptionHandler
     {
 
-        public static void UseCustomException(this IApplicationBuilder app)
+        public static void UseCustomException(this IApplicationBuilder app,ILogger logger)
         {
             
             app.UseExceptionHandler(config =>
@@ -32,6 +32,8 @@ namespace BaseProject.Shared.Extensions
                         var ex = errorFeature.Error;
 
                         var response = new Response<NoDataResponse>(ResultStatus.Error, ex.Message);
+
+                        logger.LogError(ex, ex.Message);
                         
                         await context.Response.WriteAsync(JsonSerializer.Serialize(response));
                     }
