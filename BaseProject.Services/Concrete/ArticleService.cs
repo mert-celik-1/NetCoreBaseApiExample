@@ -3,6 +3,7 @@ using BaseProject.Core;
 using BaseProject.Core.Dtos;
 using BaseProject.Data.Abstract;
 using BaseProject.Services.Abstract;
+using BaseProject.Services.Cache;
 using BaseProject.Services.Utilities;
 using BaseProject.Shared.Response;
 using System;
@@ -17,11 +18,13 @@ namespace BaseProject.Services.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ICacheService _cacheService;
 
-        public ArticleService(IUnitOfWork unitOfWork, IMapper mapper)
+        public ArticleService(IUnitOfWork unitOfWork, IMapper mapper,ICacheService cacheService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _cacheService = cacheService;
         }
 
         public async Task<NoDataResponse> Add(ArticleAddDto articleAddDto)

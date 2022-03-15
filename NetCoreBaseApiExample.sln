@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.Services", "Bas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.Core", "BaseProject.Core\BaseProject.Core.csproj", "{ADA7B5BF-2061-45DC-9D85-6393AFF65C20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseProject.UnitTest", "BaseProject.UnitTest\BaseProject.UnitTest.csproj", "{30332A42-7CCF-409F-B1EF-DE7C5960A151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseProject.UnitTest", "BaseProject.UnitTest\BaseProject.UnitTest.csproj", "{30332A42-7CCF-409F-B1EF-DE7C5960A151}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

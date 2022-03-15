@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BaseProject.Data.Concrete
 {
+    //User refresh token instance alinmasini duzelt
     public class UnitOfWork : IUnitOfWork
     {
         private ArticleRepository _articleRepository;

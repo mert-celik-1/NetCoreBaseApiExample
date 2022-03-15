@@ -23,7 +23,6 @@ namespace BaseProject.API.Controllers
         }
 
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetArticles()
         {
@@ -32,7 +31,7 @@ namespace BaseProject.API.Controllers
             return Ok(articles);
         }
 
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> GetArticleById(ArticleGetDto articleGetDto)
         {

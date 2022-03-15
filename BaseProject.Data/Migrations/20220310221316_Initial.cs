@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BaseProject.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -232,19 +232,19 @@ namespace BaseProject.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "Content", "IsActive", "Title", "UserId" },
                 values: new object[,]
                 {
-                    { "609d3700-17fd-4ba0-8b4e-895349a56d89", null, "Test", true, "Article", null },
-                    { "648ede77-921c-4f37-8c3e-4972fb876ff7", null, "Test2", true, "Article2", null }
+                    { "85c57b6f-f1d9-4354-b3da-ebfe071fda87", null, "Test", true, "Article", null },
+                    { "0b90381b-3572-4775-a924-4675e7f231cd", null, "Test2", true, "Article2", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Description", "IsActive", "Name" },
-                values: new object[] { "749527e0-4603-43fa-a878-bfeeca95acfb", "test", true, "category" });
+                values: new object[] { "6b952859-889a-4815-9a8f-ee7e2877ae00", "test", true, "category" });
 
             migrationBuilder.InsertData(
                 table: "Comments",
                 columns: new[] { "Id", "ArticleId", "IsActive", "Text" },
-                values: new object[] { "25598677-ba84-4c84-94f6-fa0fb405b64a", null, true, "text" });
+                values: new object[] { "bd426650-53de-4af9-98f8-dc1bedb7cdd2", null, true, "text" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Articles_CategoryId",

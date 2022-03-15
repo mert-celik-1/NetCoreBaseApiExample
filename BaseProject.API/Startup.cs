@@ -6,6 +6,7 @@ using BaseProject.Data.Abstract;
 using BaseProject.Data.Concrete;
 using BaseProject.Services.Abstract;
 using BaseProject.Services.AutoMapper;
+using BaseProject.Services.Cache;
 using BaseProject.Services.Concrete;
 using BaseProject.Shared.Extensions;
 using BaseProject.Shared.TokenOptions;
@@ -44,6 +45,7 @@ namespace BaseProject.API
         {
 
             services.AddAutoMapper(typeof(ArticleMap),typeof(CategoryMap),typeof(CommentMap),typeof(UserMap));
+            
 
             services.AddSingleton<ITokenService, TokenService>();
             services.AddScoped<IArticleService, ArticleService>();
@@ -52,7 +54,8 @@ namespace BaseProject.API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddSingleton<RedisSettings, RedisSettings>();
+            services.AddScoped<ICacheService, CacheService>();
 
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -115,7 +118,7 @@ namespace BaseProject.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,RedisSettings redisSettings)
         {
             if (env.IsDevelopment())
             {
@@ -135,6 +138,8 @@ namespace BaseProject.API
             
             app.UseAuthentication();
             app.UseAuthorization();
+
+            redisSettings.Connect();
 
             app.UseEndpoints(endpoints =>
             {

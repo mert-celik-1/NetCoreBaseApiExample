@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BaseProject.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220217160937_initial")]
-    partial class initial
+    [Migration("20220310221316_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,14 +57,14 @@ namespace BaseProject.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "609d3700-17fd-4ba0-8b4e-895349a56d89",
+                            Id = "85c57b6f-f1d9-4354-b3da-ebfe071fda87",
                             Content = "Test",
                             IsActive = true,
                             Title = "Article"
                         },
                         new
                         {
-                            Id = "648ede77-921c-4f37-8c3e-4972fb876ff7",
+                            Id = "0b90381b-3572-4775-a924-4675e7f231cd",
                             Content = "Test2",
                             IsActive = true,
                             Title = "Article2"
@@ -94,7 +94,7 @@ namespace BaseProject.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "749527e0-4603-43fa-a878-bfeeca95acfb",
+                            Id = "6b952859-889a-4815-9a8f-ee7e2877ae00",
                             Description = "test",
                             IsActive = true,
                             Name = "category"
@@ -126,7 +126,7 @@ namespace BaseProject.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "25598677-ba84-4c84-94f6-fa0fb405b64a",
+                            Id = "bd426650-53de-4af9-98f8-dc1bedb7cdd2",
                             IsActive = true,
                             Text = "text"
                         });
