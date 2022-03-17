@@ -28,7 +28,7 @@ namespace BaseProject.Data.Concrete
 
         public ICommentRepository Comments => _commentRepository ?? new CommentRepository(_context);
 
-        public IUserRefreshTokenRepository RefreshTokens => new UserRefreshTokenRepository(_context);
+        public IUserRefreshTokenRepository RefreshTokens =>_userRefreshTokenRepository?? new UserRefreshTokenRepository(_context);
 
         public void Commit()
         {
